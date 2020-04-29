@@ -3,6 +3,7 @@ import axios from "axios"
 const baseUrl = "/api"
 
 axios.defaults.baseURL = baseUrl
+axios.defaults.headers = { 'Content-Type': 'application/json;charset=UTF-8' }
 
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {

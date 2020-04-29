@@ -4,11 +4,24 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', directives: '/home' },
-  { path: '/home', name: 'home', component: () => import(/* webpackChunkName: "login" */ "@/views/Home") },
-  { path: "/login", name: "login", component: () => import( /* webpackChunkName: "login" */ "@/views/login") }
+  { path: '/', redirect: '/home' },
+  {
+    path: '/home', name: 'home', component: () => import(/* webpackChunkName: "login" */ "@/views/Home"),
+    children: [
+      {
+        path: "management/news/type",
+        component: () => import(/* webpackChunkName: "news" */ "@/views/management/news/type/index")
+      }, {
+        path: "management/news/release",
+        component: () => import(/* webpackChunkName: "news" */ "@/views/management/news/release/index")
+      }, {
+        path: "management/news/report",
+        component: () => import(/* webpackChunkName: "news" */ "@/views/management/news/report/index")
+      }, 
+    ]
+  },
+  { path: "/login", name: "login", component: () => import( /* webpackChunkName: "login" */ "@/views/login") },
 ];
-
 
 
 const router = new VueRouter({
@@ -16,13 +29,16 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
+
+
 router.beforeEach((to, from, next) => {
-  if(localStorage.getItem('login')){
+  console.log(to)
+  if (to.path === "/login") {
     next()
-  }else{
-    if(to.path === "/login"){
-      next()
-    }else{
+  } else {
+    if (localStorage.getItem('login') && localStorage.getItem("menuList")) {
+      next();
+    } else {
       next("/login")
     }
   }

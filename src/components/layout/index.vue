@@ -16,8 +16,12 @@
       </div>
     </el-header>
     <el-container class="main-container">
-      <el-aside width="200px">Aside</el-aside>
-      <el-main>Main</el-main>
+      <el-aside width="210px">
+        <LayoutAside :menuList="menuList"></LayoutAside>
+      </el-aside>
+      <el-main>
+        <router-view></router-view>
+      </el-main>
     </el-container>
     <!-- 修改密码组件 -->
     <change-password ref="changePasswordRef" />
@@ -28,20 +32,39 @@
 <script>
 // 修改密码组件
 import ChangePassword from "./ChangePassword/ChangePassword";
+// 侧边栏
+import LayoutAside from "./Aside/Aside";
+
+import { loginOutApi } from "@/api/login"
 export default {
   components: {
-    ChangePassword
+    ChangePassword,
+    LayoutAside
+  },
+  data() {
+    return {
+      menuList: []
+    };
+  },
+  created() {
+    // 获取列表
+    const menuList = JSON.parse(localStorage.getItem("menuList"));
+    this.menuList = menuList;
   },
   methods: {
-    handleCommand(command) {
+    async handleCommand(command) {
       // 修改密码
       if (command === "changePassword") {
         this.$refs.changePasswordRef.dialogVisible = true;
       }
       // 退出系统
-      if(command === "loginOut"){
-          localStorage.clear()
-          this.$router.push("/login")
+      if (command === "loginOut") {
+        const data = await loginOutApi();
+        if(data.httpCode === "0"){
+          localStorage.clear();
+          sessionStorage.clear()
+          this.$router.push("/login");
+        }
       }
     }
   }
@@ -66,6 +89,12 @@ export default {
       }
     }
   }
+  .el-aside {
+    border-right: 1px solid #e6e6e6;
+    .el-menu {
+      border-right: none;
+    }
+  }
 }
 .el-header,
 .el-footer {
@@ -73,32 +102,5 @@ export default {
   color: #333;
   text-align: center;
   line-height: 60px;
-}
-
-.el-aside {
-  background-color: #d3dce6;
-  color: #333;
-  text-align: center;
-  line-height: 200px;
-}
-
-.el-main {
-  background-color: #e9eef3;
-  color: #333;
-  text-align: center;
-  line-height: 160px;
-}
-
-body > .el-container {
-  margin-bottom: 40px;
-}
-
-.el-container:nth-child(5) .el-aside,
-.el-container:nth-child(6) .el-aside {
-  line-height: 260px;
-}
-
-.el-container:nth-child(7) .el-aside {
-  line-height: 320px;
 }
 </style>

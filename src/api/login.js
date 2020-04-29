@@ -5,6 +5,11 @@ export const login = (params) => {
     return axios.post("/login", params)
 }
 
+// 登出
+export const loginOutApi = (params) => {
+    return axios.post("/logout", params)
+}
+
 // 获取用户列表
 export const getMenuList = (params) => {
     return axios.post("/system/menu/user/list", params)
