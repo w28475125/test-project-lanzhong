@@ -1,6 +1,17 @@
 <template>
-  <el-dialog title="修改密码" :visible.sync="dialogVisible" width="30%" :before-close="handleClose">
-    <el-form ref="form" label-position="top" :model="form" :rules="rules" label-width="120px">
+  <el-dialog
+    title="修改密码"
+    :visible.sync="dialogVisible"
+    width="30%"
+    :before-close="handleClose"
+  >
+    <el-form
+      ref="form"
+      label-position="top"
+      :model="form"
+      :rules="rules"
+      label-width="120px"
+    >
       <el-form-item label="请输入旧密码" prop="oldpassword">
         <el-input type="password" v-model="form.oldpassword"></el-input>
       </el-form-item>
@@ -15,7 +26,7 @@
   </el-dialog>
 </template>
 <script>
-import { changePassword } from "@/api/login"
+import { changePassword } from "@/api/login";
 export default {
   data() {
     return {
@@ -46,31 +57,31 @@ export default {
       done();
     },
     submitPassword() {
-        this.$refs.form.validate(async valid => {
-            if(valid){
-                const data = await changePassword(this.form)
-                if(data.httpCode === "0"){
-                    this.$message({
-                        message: "修改成功，请重新登录",
-                        type: 'success',
-                        onClose: () => {
-                            localStorage.clear()
-                            this.$router.push("/login")
-                        }
-                    })
-                }else{
-                    this.$message.error(data.message)
-                }
-            }
-        })
+      this.$refs.form.validate(async valid => {
+        if (valid) {
+          const data = await changePassword(this.form);
+          if (data.httpCode === "0") {
+            this.$message({
+              message: "修改成功，请重新登录",
+              type: "success",
+              onClose: () => {
+                localStorage.clear();
+                this.$router.push("/login");
+              }
+            });
+          } else {
+            this.$message.error(data.message);
+          }
+        }
+      });
     }
   }
 };
 </script>
 
 <style lang="scss" scoped>
-  .dialog-footer{
-    display: flex;
-    justify-content: center;
-  }
+.dialog-footer {
+  display: flex;
+  justify-content: center;
+}
 </style>

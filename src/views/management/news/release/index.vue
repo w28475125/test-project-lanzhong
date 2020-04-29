@@ -50,7 +50,8 @@
 
       <el-form-item label="上传图片" v-show="coverType">
         <el-upload
-          v-for="(item, index) in coverType" :key="index"
+          v-for="(item, index) in coverType"
+          :key="index"
           action="https://jsonplaceholder.typicode.com/posts/"
           list-type="picture-card"
           class="upload-box"
@@ -70,10 +71,16 @@
       <el-form-item label="转载来源" v-show="articleFlag">
         <el-row :gutter="20">
           <el-col :span="5">
-            <el-input v-model="articleTitle" placeholder="请输入转载来源名称"></el-input>
+            <el-input
+              v-model="articleTitle"
+              placeholder="请输入转载来源名称"
+            ></el-input>
           </el-col>
           <el-col :span="11">
-            <el-input v-model="articleUrl" placeholder="请输入转载来源地址"></el-input>
+            <el-input
+              v-model="articleUrl"
+              placeholder="请输入转载来源地址"
+            ></el-input>
           </el-col>
         </el-row>
       </el-form-item>
@@ -121,7 +128,7 @@ export default {
       articleUrl: "",
       // 文章置顶
       articleStick: "",
-      formValid: true,
+      formValid: true
     };
   },
   created() {
@@ -143,22 +150,23 @@ export default {
     },
     // 提交
     handleSubmit() {
-      if(!this.title)this.formValid = false;
-      if(!this.content)this.formValid = false;
-      if(!this.newsTypeId)this.formValid = false;
-      if(this.articleSetting == 2 && !(this.articleTitle && this.articleUrl))this.formValid = false;
-      if(!this.articleStick)this.formValid = false;
-      if(!this.formValid){
+      if (!this.title) this.formValid = false;
+      if (!this.content) this.formValid = false;
+      if (!this.newsTypeId) this.formValid = false;
+      if (this.articleSetting == 2 && !(this.articleTitle && this.articleUrl))
+        this.formValid = false;
+      if (!this.articleStick) this.formValid = false;
+      if (!this.formValid) {
         this.$message({
           message: "请完善新闻内容",
-          type: 'error'
-        })
+          type: "error"
+        });
         return false;
       }
     },
     handleAvatarSuccess(res, file) {
-      console.log(URL.createObjectURL(file.raw))
-      console.log(res)
+      console.log(URL.createObjectURL(file.raw));
+      console.log(res);
     }
   }
 };
@@ -168,7 +176,7 @@ export default {
 .form-btn {
   text-align: center;
 }
-.upload-box{
+.upload-box {
   display: inline-block;
   margin-right: 10px;
 }

@@ -1,15 +1,25 @@
 <template>
   <div class="login">
+    <div class="logo-title">兰众云共享物管平台</div>
     <div class="form">
       <el-form label-position="top" label-width="80px" :model="formLabelAlign">
         <el-form-item label="用户名">
-          <el-input prefix-icon="el-icon-user" v-model="formLabelAlign.account"></el-input>
+          <el-input
+            prefix-icon="el-icon-user"
+            v-model="formLabelAlign.account"
+          ></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input prefix-icon="el-icon-lock" type="password" v-model="formLabelAlign.password"></el-input>
+          <el-input
+            prefix-icon="el-icon-lock"
+            type="password"
+            v-model="formLabelAlign.password"
+          ></el-input>
         </el-form-item>
       </el-form>
-      <el-button type="primary" class="login-btn" @click="login">登录</el-button>
+      <el-button type="primary" class="login-btn" @click="login"
+        >登录</el-button
+      >
     </div>
   </div>
 </template>
@@ -59,9 +69,18 @@ export default {
   height: 100%;
   display: flex;
   justify-content: center;
+  flex-direction: column;
   align-items: center;
-  background-color: #00a6ff;
-  background-image: url('https://sys.lanzhongyun.cn/static/img/login111.facfa23.png');
+  background-color: #fff;
+  background: url("https://sys.lanzhongyun.cn/static/img/login111.facfa23.png")
+    no-repeat;
+  background-size: 100% 90%;
+  .logo-title {
+    transform: translateY(-80px);
+    color: #fff;
+    letter-spacing: 18px;
+    font-weight: bold;
+  }
   .form {
     padding: 30px;
     width: 300px;

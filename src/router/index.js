@@ -4,28 +4,48 @@ import VueRouter from "vue-router";
 Vue.use(VueRouter);
 
 const routes = [
-  { path: '/', redirect: '/home' },
+  { path: "/", redirect: "/home" },
   {
-    path: '/home', name: 'home', component: () => import(/* webpackChunkName: "login" */ "@/views/Home"),
+    path: "/home",
+    name: "home",
+    component: () => import(/* webpackChunkName: "login" */ "@/views/Home"),
     children: [
       {
         path: "management/news/type",
-        component: () => import(/* webpackChunkName: "news" */ "@/views/management/news/type/index")
-      }, {
+        component: () =>
+          import(
+            /* webpackChunkName: "type" */ "@/views/management/news/type/index"
+          )
+      },
+      {
         path: "management/news/release",
-        component: () => import(/* webpackChunkName: "news" */ "@/views/management/news/release/index")
-      }, {
+        component: () =>
+          import(
+            /* webpackChunkName: "release" */ "@/views/management/news/release/index"
+          )
+      },
+      {
         path: "management/news/report",
-        component: () => import(/* webpackChunkName: "news" */ "@/views/management/news/report/index")
-      }, {
+        component: () =>
+          import(
+            /* webpackChunkName: "report" */ "@/views/management/news/report/index"
+          )
+      },
+      {
         path: "management/news/content",
-        component: () => import(/* webpackChunkName: "news" */ "@/views/management/news/content/index")
+        component: () =>
+          import(
+            /* webpackChunkName: "content" */ "@/views/management/news/content/index"
+          )
       }
     ]
   },
-  { path: "/login", name: "login", component: () => import( /* webpackChunkName: "login" */ "@/views/login") },
+  {
+    path: "/login",
+    name: "login",
+    component: () => import(/* webpackChunkName: "login" */ "@/views/login")
+  }
 ];
-
 
 const router = new VueRouter({
   mode: "history",
@@ -33,19 +53,19 @@ const router = new VueRouter({
   routes
 });
 
-
 router.beforeEach((to, from, next) => {
-  console.log(to)
+  // eslint-disable-next-line
+  console.log(to);
   if (to.path === "/login") {
-    next()
+    next();
   } else {
-    if (localStorage.getItem('login') && localStorage.getItem("menuList")) {
+    if (localStorage.getItem("login") && localStorage.getItem("menuList")) {
       next();
     } else {
-      next("/login")
+      next("/login");
     }
   }
-  next()
-})
+  next();
+});
 
 export default router;

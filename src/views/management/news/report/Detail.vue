@@ -1,6 +1,10 @@
 <template>
-  <el-dialog title="详情" :visible.sync="dialogVisible" width="70%" :before-close="handleClose">
-    
+  <el-dialog
+    title="详情"
+    :visible.sync="dialogVisible"
+    width="70%"
+    :before-close="handleClose"
+  >
     <el-table border :data="tableData">
       <el-table-column prop="id" label="序号"></el-table-column>
       <el-table-column prop="reprotName" label="举报人"></el-table-column>
@@ -16,41 +20,41 @@
 </template>
 
 <script>
-import { getDetailDataApi } from "@/api/report"
+import { getDetailDataApi } from "@/api/report";
 export default {
   data() {
     return {
       dialogVisible: false,
-      id: '',
+      id: "",
       tableData: []
-    }
+    };
   },
   watch: {
-    dialogVisible(newV){
-      newV && this.getDetailData()
+    dialogVisible(newV) {
+      newV && this.getDetailData();
     }
   },
   methods: {
     // 获取详情数据
-    async getDetailData(){
+    async getDetailData() {
       const data = await getDetailDataApi(this.id);
-      if(data.httpCode !== "0"){
+      if (data.httpCode !== "0") {
         return this.$message({
           message: data.msg,
-          type: 'error'
-        })
+          type: "error"
+        });
       }
-      this.tableData = data.data
+      this.tableData = data.data;
     },
-    handleClose(done){
-      done()
+    handleClose(done) {
+      done();
     }
   }
-}
+};
 </script>
 
 <style lang="scss" scoped>
-.dialog-footer{
+.dialog-footer {
   display: flex;
   justify-content: center;
 }

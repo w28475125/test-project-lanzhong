@@ -1,5 +1,10 @@
 <template>
-  <el-dialog title="提示" :visible.sync="centerDialogVisible" width="30%" center>
+  <el-dialog
+    title="提示"
+    :visible.sync="centerDialogVisible"
+    width="30%"
+    center
+  >
     <div class="text-center">
       <i class="el-icon-warning"></i>确定执行此操作？
     </div>
@@ -49,10 +54,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .text-center{
-    text-align: center;
-    .el-icon-warning::before{
-      color: #ffcb0cee;
-    }
+.text-center {
+  text-align: center;
+  .el-icon-warning::before {
+    color: #ffcb0cee;
   }
+}
 </style>

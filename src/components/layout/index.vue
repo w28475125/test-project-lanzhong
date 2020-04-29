@@ -8,7 +8,9 @@
             <i class="el-icon-setting"></i>设置
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item command="changePassword">修改密码</el-dropdown-item>
+            <el-dropdown-item command="changePassword"
+              >修改密码</el-dropdown-item
+            >
             <el-dropdown-item command="loginOut">退出系统</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
@@ -28,14 +30,13 @@
   </el-container>
 </template>
 
-
 <script>
 // 修改密码组件
 import ChangePassword from "./ChangePassword/ChangePassword";
 // 侧边栏
 import LayoutAside from "./Aside/Aside";
 
-import { loginOutApi } from "@/api/login"
+import { loginOutApi } from "@/api/login";
 export default {
   components: {
     ChangePassword,
@@ -60,9 +61,9 @@ export default {
       // 退出系统
       if (command === "loginOut") {
         const data = await loginOutApi();
-        if(data.httpCode === "0"){
+        if (data.httpCode === "0") {
           localStorage.clear();
-          sessionStorage.clear()
+          sessionStorage.clear();
           this.$router.push("/login");
         }
       }

@@ -1,31 +1,37 @@
-import axios from "axios"
+import axios from "axios";
 
-const baseUrl = "/api"
+const baseUrl = "/api";
 
-axios.defaults.baseURL = baseUrl
-axios.defaults.headers = { 'Content-Type': 'application/json;charset=UTF-8' }
+axios.defaults.baseURL = baseUrl;
+axios.defaults.headers = { "Content-Type": "application/json;charset=UTF-8" };
 
 // 添加请求拦截器
-axios.interceptors.request.use(function (config) {
+axios.interceptors.request.use(
+  function(config) {
     // 在发送请求之前做些什么
     return config;
-}, function (error) {
+  },
+  function(error) {
     // 对请求错误做些什么
     return Promise.reject(error);
-});
+  }
+);
 
 // 添加响应拦截器
-axios.interceptors.response.use(function (response) {
+axios.interceptors.response.use(
+  function(response) {
     // 对响应数据做点什么
-    if(typeof response.data !== "object"){
-        localStorage.clear();
-        sessionStorage.clear();
-        window.location.reload()
+    if (typeof response.data !== "object") {
+      localStorage.clear();
+      sessionStorage.clear();
+      window.location.reload();
     }
     return response.data;
-}, function (error) {
+  },
+  function(error) {
     // 对响应错误做点什么
     return Promise.reject(error);
-});
+  }
+);
 
-export default axios
+export default axios;

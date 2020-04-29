@@ -3,10 +3,16 @@
     <el-submenu :index="item.request" v-for="item in menuList" :key="item.id">
       <template slot="title">
         <!-- <i class="el-icon-location"></i> -->
-        <span>{{item.menuName}}</span>
+        <span>{{ item.menuName }}</span>
       </template>
       <el-menu-item-group>
-        <el-menu-item @click="saveNavState('/home'+subItem.request)" :index="'/home'+subItem.request" v-for="subItem in item.childList" :key="subItem.id">{{subItem.menuName}}</el-menu-item>
+        <el-menu-item
+          @click="saveNavState('/home' + subItem.request)"
+          :index="'/home' + subItem.request"
+          v-for="subItem in item.childList"
+          :key="subItem.id"
+          >{{ subItem.menuName }}</el-menu-item
+        >
       </el-menu-item-group>
     </el-submenu>
   </el-menu>
@@ -25,18 +31,17 @@ export default {
   },
   data() {
     return {
-      activePath: ''
-    }
+      activePath: ""
+    };
   },
   created() {
-    this.activePath = sessionStorage.getItem('activePath')
-    console.log(this.activePath)
+    this.activePath = sessionStorage.getItem("activePath");
   },
   methods: {
     // 保存链接的激活状态
     saveNavState(activePath) {
-      window.sessionStorage.setItem('activePath', activePath)
-      this.activePath = activePath
+      window.sessionStorage.setItem("activePath", activePath);
+      this.activePath = activePath;
     }
   }
 };

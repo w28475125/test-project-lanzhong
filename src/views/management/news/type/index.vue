@@ -2,15 +2,36 @@
   <div>
     <div class="table-head">
       <div class="btns">
-        <el-button type="primary" @click="handleBtn('add')" icon="el-icon-circle-plus-outline">新增</el-button>
-        <el-button type="primary" @click="handleBtn('edit')" icon="el-icon-edit-outline">修改</el-button>
-        <el-button type="primary" @click="handleBtn('detail')" icon="el-icon-document">详情</el-button>
-        <el-button type="danger" icon="el-icon-delete" @click="delTableData">删除</el-button>
+        <el-button
+          type="primary"
+          @click="handleBtn('add')"
+          icon="el-icon-circle-plus-outline"
+          >新增</el-button
+        >
+        <el-button
+          type="primary"
+          @click="handleBtn('edit')"
+          icon="el-icon-edit-outline"
+          >修改</el-button
+        >
+        <el-button
+          type="primary"
+          @click="handleBtn('detail')"
+          icon="el-icon-document"
+          >详情</el-button
+        >
+        <el-button type="danger" icon="el-icon-delete" @click="delTableData"
+          >删除</el-button
+        >
       </div>
       <div class="form">
         <el-form :inline="true">
           <el-form-item>
-            <el-input v-model="form.name" placeholder="请输入新闻类型进行搜索" clearable></el-input>
+            <el-input
+              v-model="form.name"
+              placeholder="请输入新闻类型进行搜索"
+              clearable
+            ></el-input>
           </el-form-item>
           <el-form-item>
             <el-button type="primary" @click="getTableData">查询</el-button>
@@ -22,15 +43,35 @@
     <el-table border :data="tableData" v-loading="loading">
       <el-table-column align="center" fixed="left" width="55">
         <template slot-scope="scope">
-          <el-radio v-model="radio" :label="scope.$index" @change.native="getCurrentRow(scope.row)">
+          <el-radio
+            v-model="radio"
+            :label="scope.$index"
+            @change.native="getCurrentRow(scope.row)"
+          >
             <i></i>
           </el-radio>
         </template>
       </el-table-column>
-      <el-table-column align="center" prop="createBy" label="序号"></el-table-column>
-      <el-table-column align="center" prop="name" label="类型名称"></el-table-column>
-      <el-table-column align="center" prop="createName" label="创建人"></el-table-column>
-      <el-table-column align="center" prop="createTime" label="创建时间"></el-table-column>
+      <el-table-column
+        align="center"
+        prop="createBy"
+        label="序号"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="name"
+        label="类型名称"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="createName"
+        label="创建人"
+      ></el-table-column>
+      <el-table-column
+        align="center"
+        prop="createTime"
+        label="创建时间"
+      ></el-table-column>
     </el-table>
     <!-- 分页 -->
     <pagination

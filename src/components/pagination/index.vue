@@ -47,7 +47,7 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.pagination-container{
+.pagination-container {
   margin-top: 10px;
   text-align: right;
 }
