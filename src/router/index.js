@@ -17,7 +17,10 @@ const routes = [
       }, {
         path: "management/news/report",
         component: () => import(/* webpackChunkName: "news" */ "@/views/management/news/report/index")
-      }, 
+      }, {
+        path: "management/news/content",
+        component: () => import(/* webpackChunkName: "news" */ "@/views/management/news/content/index")
+      }
     ]
   },
   { path: "/login", name: "login", component: () => import( /* webpackChunkName: "login" */ "@/views/login") },

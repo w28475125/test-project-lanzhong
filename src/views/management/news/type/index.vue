@@ -32,6 +32,7 @@
       <el-table-column align="center" prop="createName" label="创建人"></el-table-column>
       <el-table-column align="center" prop="createTime" label="创建时间"></el-table-column>
     </el-table>
+    <!-- 分页 -->
     <pagination
       :current="current"
       :total="total"

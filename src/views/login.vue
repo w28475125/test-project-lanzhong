@@ -61,6 +61,7 @@ export default {
   justify-content: center;
   align-items: center;
   background-color: #00a6ff;
+  background-image: url('https://sys.lanzhongyun.cn/static/img/login111.facfa23.png');
   .form {
     padding: 30px;
     width: 300px;

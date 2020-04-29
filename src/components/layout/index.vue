@@ -1,7 +1,7 @@
 <template>
   <el-container class="main-container">
     <el-header class="header-container">
-      <div class="left">logo</div>
+      <div class="left">兰众云共享物管平台</div>
       <div class="right">
         <el-dropdown @command="handleCommand">
           <span class="el-dropdown-link">
