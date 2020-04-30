@@ -37,7 +37,14 @@ const routes = [
           import(
             /* webpackChunkName: "content" */ "@/views/management/news/content/index"
           )
-      }
+      },
+      {
+        path: "management/news/content/detail",
+        component: () =>
+          import(
+            /* webpackChunkName: "report" */ "@/views/management/news/content/detail"
+          )
+      },
     ]
   },
   {
